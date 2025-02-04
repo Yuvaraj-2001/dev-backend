@@ -1,8 +1,10 @@
 import express from 'express';
 import mysql  from 'mysql2/promise';
+import cors from 'cors';
 
 const app = express();
 app.use(express.json());
+app.use(cors()); // Enable CORS for all routes
 
 const PORT = 3300;
 
