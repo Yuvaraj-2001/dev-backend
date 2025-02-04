@@ -70,6 +70,7 @@ app.post('/collections', async (req, res) => {
 });
 
 // ✅ GET request to retrieve all collections using async/await
+
 app.get('/collections', async (req, res) => {
     try {
         const [results] = await pool.query('SELECT * FROM collections');
@@ -78,7 +79,15 @@ app.get('/collections', async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 });
-
+app.get('/collectionsById/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const [results] = await pool.query('SELECT * FROM collections Where id = ?', [id]);
+        res.status(200).json(results);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
 // ✅ PUT request to update a collection by id using async/await
 app.put('/collections/:id', async (req, res) => {
     const { id } = req.params;
