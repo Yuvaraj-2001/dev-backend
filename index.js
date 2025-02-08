@@ -1,6 +1,7 @@
 import express from 'express';
 import mysql  from 'mysql2/promise';
 import cors from 'cors';
+import 'dotenv/config';
 
 const app = express();
 app.use(express.json());
@@ -9,10 +10,10 @@ app.use(cors()); // Enable CORS for all routes
 const PORT = 3300;
 
 const pool = mysql.createPool({
-    host: '193.203.184.196', // Replace with your database host (e.g., '192.168.1.1' or 'sql123456.hostinger.com')
-    user: 'u816628190_yuvaraj', // Replace with your database username
-    password: '=1W#ucDqqM', // Replace with your database password
-    database: 'u816628190_yuvidev', // Replace with your database name
+    host: process.env.DB_HOST, // Replace with your database host (e.g., '192.168.1.1' or 'sql123456.hostinger.com')
+    user:  process.env.DB_USER, // Replace with your database username
+    password: process.env.DB_PASSWORD, // Replace with your database password
+    database: process.env.DB_NAME, // Replace with your database name
     waitForConnections: true,
     connectionLimit: 10, // Max connections
     queueLimit: 0
