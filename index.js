@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 app.use(cors()); // Enable CORS for all routes
 
-const PORT = 3300;
+const PORT = process.env.PORT;
 
 const pool = mysql.createPool({
     host: process.env.DB_HOST, // Replace with your database host (e.g., '192.168.1.1' or 'sql123456.hostinger.com')
