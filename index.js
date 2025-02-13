@@ -4,7 +4,7 @@ import cors from 'cors';
 import 'dotenv/config';
 
 const app = express();
-app.use(express.json());
+app.use(express.json({ limit: '1gb' }));
 app.use(cors()); // Enable CORS for all routes
 
 const PORT = process.env.PORT;
@@ -136,6 +136,7 @@ app.post('/blogs', async (req, res) => {
 
     try {
         const jsonContent = JSON.stringify(content);
+        console.log(jsonContent);
         const [result] = await pool.query(
             'INSERT INTO blogs (heading, content, collections_id) VALUES (?, ?, ?)',
             [heading, jsonContent, collections_id]
